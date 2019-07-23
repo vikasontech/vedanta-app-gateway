@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: gateway
+
+server:
+  port: 1234
+zuul:
+  routes:
+    get:
+      path: /hello/**
+      url: http://httpbin.org/get
+
+ribbon:
+  eureka:
+    enabled: false
+
+logging:
+  level:
+    org.vedanta.vidiyalay: TRACE
+

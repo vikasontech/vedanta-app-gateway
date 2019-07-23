@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: vedanta-app-gateway
+
+server:
+  port: 1234
+
+okta:
+  oauth2:
+    client-id: 
+    issuer: https://okta.com/oauth2/default
+
+management:
+  endpoints:
+    health:
+      expose: "*"
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false
+zuul:
+  routes:
+    student-service:
+      path: /student-service/**
+      url: https://localhost:8081/
+      stripPrefix: true
+    account-service:
+      path: /account-service/**
+      url: http://localhost:8082/
+      stripPrefix: true
+    fine-service:
+      path: /fine-service/**
+      url: http://localhost:8083
+      stripPrefix: true
+
+ribbon:
+  eureka:
+    enabled: false
+
+logging:
+  level:
+    org.vedanta.vidiyalay: TRACE
+
